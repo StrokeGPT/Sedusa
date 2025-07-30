@@ -1,0 +1,9 @@
+{
+  "families": {
+    "tip":   { "range_mm": [8, 16],  "hz": [1.2, 2.2] },
+    "mid":   { "range_mm": [10, 20], "hz": [1.0, 2.0] },
+    "deep":  { "range_mm": [12, 22], "hz": [0.9, 1.8] },
+    "full":  { "range_mm": [16, 26], "hz": [0.8, 1.6] }
+  },
+  "notes": "Story Mode uses TokenCompiler to generate banded segments; families are for future tuning."
+}

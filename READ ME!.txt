@@ -1,0 +1,71 @@
+Sedusa Mode Handy Controller
+
+Welcome to Sedusa Mode! This is a simple guide to help you set up and enjoy your new immersive experience for The Handy.
+WINDOWS ONLY.
+
+## What Does It Do?
+
+* Immersive Narrative: Engage with Medusa, who controls your Handy's movements in real-time with an evolving story.
+* Fully Customizable Experience: Adjust the depth and intensity to create your perfect session.
+* It Remembers You: Your preferences are saved, so you don't have to set them every time.
+* Internet-Connected for Control: The app requires an internet connection to send commands to The Handy's servers.
+* Built-in Safety: The app includes safety limiters to ensure movements always stay within your comfortable range.
+
+## How to Get Started (easier than it looks!)
+
+### Step 1: Install Prerequisites
+
+You need one free program to run the app.
+
+**Python:**
+* Download the latest stable version of Python 3 (e.g., Python 3.12 or newer) from the official Python website:
+    https://www.python.org/downloads/
+* During installation, you **must check the box** that says "Add Python to PATH" or "Add Python to environment variables." This is crucial!
+
+### Step 2: Get Sedusa Mode Ready
+
+* **Download the Project:**
+    * Go to the project's GitHub page).
+    * Look for a green button that says `<> Code` or "Download Code."
+    * Click on that button, and then select **"Download ZIP."** This will download all the project files in a single compressed file.
+
+* **Unzip the Files:**
+    * Find the downloaded ZIP file (it's probably in your "Downloads" folder).
+    * **Right-click** on the ZIP file.
+    * Select **"Extract All..."** (or similar option like "Unzip" or "Extract here").
+    * Choose a simple location to extract it to, like your Desktop or Documents folder. This will create a new folder (e.g., "Sedusa Mode" or "Medusa Mode-main").
+    * Open this newly extracted folder. Make sure all original subfolders (like `content`, `data`, `web`, `device`, `haptics`) are present inside it. This is your main "Sedusa Mode" project folder.
+
+* **Install Required Libraries:**
+    * **Open a Command Prompt directly in your Sedusa Mode project folder:**
+        * Open the extracted "Sedusa Mode" folder.
+        * Click on the **address bar** at the very top of the File Explorer window (where it shows the folder's path).
+        * Type `cmd` (lowercase is fine) and press `Enter`. A black Command Prompt window should appear, already in the correct folder.
+    * In this black Command Prompt window, type this command and press Enter:
+        
+        pip install -r requirements.txt
+        
+    * This will install Flask and Requests. Wait for it to finish. You'll see text scrolling.
+
+### Step 3: Run the App!
+
+* Start the Server:
+    * In the **same terminal** (Command Prompt window, still in your project folder), run this command:
+        
+        python app.py
+        
+    * The server is working when you see a message similar to: `Running on http://127.0.0.1:7860`.
+    * **Keep this terminal window open.** If you close it, the app will stop.
+    * **IMPORTANT:** The first time you run this, your computer's firewall might ask for permission. You **MUST allow** network access for the app to work.
+
+* Open in Browser:
+    * Open your web browser (Chrome, Firefox, Edge, etc.) and go to the following address:
+        `http://127.0.0.1:7860`
+    * The Sedusa Mode application will appear. You will be guided through entering your Handy API key (one time) and selecting your intensity.
+
+### To Stop the App:
+
+* Go back to the black terminal window where `app.py` is running.
+* Press `Ctrl+C` on your keyboard.
+* If it asks to terminate, type `Y` and press Enter.
+* The window will then close.

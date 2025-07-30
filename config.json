@@ -1,0 +1,21 @@
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 7860
+  },
+  "device": {
+    "mode": "handy",
+    "api_key": "",
+    "log_device": true
+  },
+  "caps": {
+    "depth_min_mm": 15,
+    "depth_max_mm": 110,
+    "speed_min_hz": 0.4,
+    "speed_max_hz": 3.2,
+    "jerk_guard": true
+  },
+  "story": {
+    "default_length_min": 10
+  }
+}

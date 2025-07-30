@@ -1,0 +1,263 @@
+[
+  { "name": "tip_suck_sine",
+    "family": "tip_suck",
+    "tags": {"focus":"tip","texture":"smooth","arc":"tease","sub_focus":"ridge","range_pref":"small"},
+    "pattern": {"type":"sine","duration_ms":8000,"sp":34,"dp":10,"rng":14,"cycles":3}
+  },
+  { "name": "tip_top_bounce",
+    "family": "tip_bounce",
+    "tags": {"focus":"tip","texture":"stutter","arc":"tease","range_pref":"small"},
+    "pattern": {"type":"stair","duration_ms":6000,"sp":52,"dp":12,"rng":18,"stair_steps":5}
+  },
+  { "name": "tip_lick_flick",
+    "family": "tip_flick",
+    "tags": {"focus":"tip","texture":"pulse","arc":"tease","sub_focus":"frenulum","range_pref":"small"},
+    "pattern": {"type":"pulse","duration_ms":5000,"sp":46,"sp2":64,"dp":10,"rng":12,"cycles":6}
+  },
+  { "name": "tip_swirl_walk",
+    "family": "tip_swirl",
+    "tags": {"focus":"tip","texture":"smooth","arc":"tease","sub_focus":"ridge","range_pref":"small"},
+    "pattern": {"type":"combo","duration_ms":9000,"sp":36,"dp":10,"rng":14,
+      "combo":[
+        {"type":"sine","duration_ms":2600,"sp":36,"dp":10,"rng":14,"cycles":2},
+        {"type":"sine","duration_ms":2600,"sp":36,"dp":12,"rng":12,"cycles":2},
+        {"type":"sine","duration_ms":2600,"sp":36,"dp":11,"rng":16,"cycles":2}
+      ]}
+  },
+  { "name": "mid_pump_triangle",
+    "family": "mid_pump",
+    "tags": {"focus":"mid","texture":"smooth","arc":"ramp","range_pref":"any"},
+    "pattern": {"type":"triangle","duration_ms":7000,"sp":52,"dp":50,"rng":40}
+  },
+  { "name": "mid_ratchet_stairs",
+    "family": "mid_ratchet",
+    "tags": {"focus":"mid","texture":"stutter","arc":"hold","range_pref":"any"},
+    "pattern": {"type":"stair","duration_ms":6000,"sp":50,"dp":52,"rng":34,"stair_steps":7}
+  },
+  { "name": "mid_grind_small_sine",
+    "family": "mid_grind",
+    "tags": {"focus":"mid","texture":"grind","arc":"hold","range_pref":"small"},
+    "pattern": {"type":"sine","duration_ms":9000,"sp":34,"dp":55,"rng":20,"cycles":3}
+  },
+  { "name": "two_step_pop",
+    "family": "mid_two_step",
+    "tags": {"focus":"mid","texture":"stutter","arc":"hold","range_pref":"any"},
+    "pattern": {"type":"combo","duration_ms":5200,"sp":52,"dp":56,"rng":46,
+      "combo":[
+        {"type":"triangle","duration_ms":3600,"sp":46,"dp":56,"rng":46},
+        {"type":"burst","duration_ms":600,"sp":78,"dp":62,"rng":40,"burst_on_ms":260,"burst_off_ms":140}
+      ]}
+  },
+  { "name": "deep_drive_triangle",
+    "family": "deep_drive",
+    "tags": {"focus":"deep","texture":"smooth","arc":"hold","range_pref":"large"},
+    "pattern": {"type":"triangle","duration_ms":8000,"sp":58,"dp":85,"rng":72}
+  },
+  { "name": "deep_grind_small_sine",
+    "family": "deep_grind",
+    "tags": {"focus":"deep","texture":"grind","arc":"hold","range_pref":"small"},
+    "pattern": {"type":"sine","duration_ms":10000,"sp":38,"dp":90,"rng":24,"cycles":3}
+  },
+  { "name": "deep_throat_gag_pulses",
+    "family": "deep_gag",
+    "tags": {"focus":"deep","texture":"pulse","arc":"ramp","range_pref":"large"},
+    "pattern": {"type":"combo","duration_ms":9000,"sp":62,"dp":86,"rng":70,
+      "combo":[
+        {"type":"saw","duration_ms":3800,"sp":56,"dp":84,"rng":68},
+        {"type":"burst","duration_ms":1800,"sp":78,"dp":90,"rng":52,"burst_on_ms":280,"burst_off_ms":160},
+        {"type":"sine","duration_ms":2600,"sp":52,"dp":88,"rng":40,"cycles":2}
+      ]}
+  },
+  { "name": "deep_step_driver",
+    "family": "deep_step",
+    "tags": {"focus":"deep","texture":"stutter","arc":"ramp","range_pref":"large"},
+    "pattern": {"type":"stair","duration_ms":7600,"sp":56,"dp":88,"rng":68,"stair_steps":6}
+  },
+  { "name": "cowgirl_top_dwell",
+    "family": "pos_cowgirl",
+    "tags": {"focus":"tip","texture":"stutter","arc":"hold","position":"cowgirl","range_pref":"small"},
+    "pattern": {"type":"combo","duration_ms":6500,"sp":50,"dp":28,"rng":28,
+      "combo":[
+        {"type":"stair","duration_ms":2000,"sp":48,"dp":28,"rng":28,"stair_steps":4},
+        {"type":"hold","duration_ms":300,"sp":35,"dp":28,"rng":20},
+        {"type":"stair","duration_ms":2000,"sp":52,"dp":28,"rng":28,"stair_steps":4},
+        {"type":"hold","duration_ms":300,"sp":35,"dp":28,"rng":20}
+      ]}
+  },
+  { "name": "missionary_smooth_full",
+    "family": "pos_missionary",
+    "tags": {"focus":"full","texture":"smooth","arc":"hold","position":"missionary","range_pref":"large"},
+    "pattern": {"type":"triangle","duration_ms":8000,"sp":54,"dp":60,"rng":80}
+  },
+  { "name": "doggy_deep_pump",
+    "family": "pos_doggy",
+    "tags": {"focus":"deep","texture":"pulse","arc":"ramp","position":"doggy","range_pref":"large"},
+    "pattern": {"type":"combo","duration_ms":8000,"sp":64,"dp":88,"rng":76,
+      "combo":[
+        {"type":"triangle","duration_ms":3000,"sp":58,"dp":86,"rng":76},
+        {"type":"burst","duration_ms":1200,"sp":82,"dp":92,"rng":60,"burst_on_ms":320,"burst_off_ms":150},
+        {"type":"triangle","duration_ms":2600,"sp":60,"dp":88,"rng":76}
+      ]}
+  },
+  { "name": "edge_hover_tip",
+    "family": "edge_hover",
+    "tags": {"focus":"tip","texture":"smooth","arc":"tease","range_pref":"small"},
+    "pattern": {"type":"sine","duration_ms":10000,"sp":33,"dp":12,"rng":12,"cycles":3}
+  },
+  { "name": "edge_ramp_tease",
+    "family": "edge_ramp",
+    "tags": {"focus":"tip","texture":"smooth","arc":"ramp","range_pref":"small"},
+    "pattern": {"type":"combo","duration_ms":11000,"sp":40,"dp":14,"rng":14,
+      "combo":[
+        {"type":"sine","duration_ms":3000,"sp":34,"dp":12,"rng":12,"cycles":2},
+        {"type":"sine","duration_ms":3200,"sp":42,"dp":18,"rng":18,"cycles":2},
+        {"type":"pulse","duration_ms":2800,"sp":46,"sp2":62,"dp":16,"rng":16,"cycles":6}
+      ]}
+  },
+  { "name": "finish_ladder_burst",
+    "family": "finish_ladder",
+    "tags": {"focus":"full","texture":"burst","arc":"finish","range_pref":"large"},
+    "pattern": {"type":"combo","duration_ms":8000,"sp":72,"dp":70,"rng":80,
+      "combo":[
+        {"type":"stair","duration_ms":2200,"sp":70,"dp":72,"rng":76,"stair_steps":5},
+        {"type":"pulse","duration_ms":2200,"sp":78,"sp2":96,"dp":76,"rng":72,"cycles":6},
+        {"type":"burst","duration_ms":1600,"sp":95,"dp":86,"rng":60,"burst_on_ms":380,"burst_off_ms":160}
+      ]}
+  },
+  { "name": "wave_train_progressive",
+    "family": "mid_wave",
+    "tags": {"focus":"mid","texture":"smooth","arc":"ramp","range_pref":"any"},
+    "pattern": {"type":"combo","duration_ms":9000,"sp":50,"dp":60,"rng":40,
+      "combo":[
+        {"type":"sine","duration_ms":2200,"sp":48,"dp":56,"rng":36,"cycles":2},
+        {"type":"sine","duration_ms":2200,"sp":50,"dp":62,"rng":44,"cycles":2},
+        {"type":"sine","duration_ms":2200,"sp":54,"dp":68,"rng":52,"cycles":2}
+      ]}
+  },
+  { "name": "tip_pepper_flicks",
+    "family": "tip_flick",
+    "tags": {"focus":"tip","texture":"pulse","arc":"tease","range_pref":"small"},
+    "pattern": {"type":"pulse","duration_ms":4200,"sp":44,"sp2":62,"dp":11,"rng":10,"cycles":7}
+  },
+  { "name": "mid_saw_plunge",
+    "family": "mid_plunge",
+    "tags": {"focus":"mid","texture":"smooth","arc":"hold","range_pref":"any"},
+    "pattern": {"type":"saw","duration_ms":6200,"sp":50,"dp":54,"rng":46}
+  },
+  { "name": "finish_double_burst",
+    "family": "finish_bursts",
+    "tags": {"focus":"deep","texture":"burst","arc":"finish","range_pref":"large"},
+    "pattern": {"type":"combo","duration_ms":7800,"sp":74,"dp":82,"rng":70,
+      "combo":[
+        {"type":"pulse","duration_ms":2200,"sp":76,"sp2":96,"dp":78,"rng":66,"cycles":6},
+        {"type":"burst","duration_ms":800,"sp":96,"dp":86,"rng":56,"burst_on_ms":340,"burst_off_ms":160},
+        {"type":"burst","duration_ms":800,"sp":96,"dp":88,"rng":52,"burst_on_ms":340,"burst_off_ms":160}
+      ]}
+  },
+  { "name": "cowgirl_soft_bounce",
+    "family": "pos_cowgirl",
+    "tags": {"focus":"mid","texture":"smooth","arc":"hold","position":"cowgirl","range_pref":"small"},
+    "pattern": {"type":"triangle","duration_ms":6400,"sp":48,"dp":32,"rng":26}
+  },
+  { "name": "missionary_bottom_dwell",
+    "family": "pos_missionary",
+    "tags": {"focus":"full","texture":"smooth","arc":"hold","position":"missionary","range_pref":"large"},
+    "pattern": {"type":"combo","duration_ms":7800,"sp":52,"dp":64,"rng":76,
+      "combo":[
+        {"type":"triangle","duration_ms":5000,"sp":50,"dp":64,"rng":76},
+        {"type":"hold","duration_ms":400,"sp":35,"dp":80,"rng":28}
+      ]}
+  },
+  { "name": "doggy_two_bursts",
+    "family": "pos_doggy",
+    "tags": {"focus":"deep","texture":"burst","arc":"ramp","position":"doggy","range_pref":"large"},
+    "pattern": {"type":"combo","duration_ms":8200,"sp":66,"dp":88,"rng":72,
+      "combo":[
+        {"type":"triangle","duration_ms":2800,"sp":60,"dp":86,"rng":72},
+        {"type":"burst","duration_ms":900,"sp":86,"dp":92,"rng":58,"burst_on_ms":320,"burst_off_ms":150},
+        {"type":"triangle","duration_ms":2200,"sp":62,"dp":88,"rng":72},
+        {"type":"burst","duration_ms":900,"sp":88,"dp":92,"rng":58,"burst_on_ms":320,"burst_off_ms":150}
+      ]}
+  },
+
+  // --- NEW PATTERNS START HERE ---
+
+  { "name": "snake_rattle_and_strike",
+    "family": "snake",
+    "tags": {"focus":"full", "texture":"burst", "arc":"ramp"},
+    "pattern": {"type":"combo","duration_ms": 7500, "sp": 50, "dp": 50, "rng": 40,
+      "combo": [
+        {"type":"pulse", "duration_ms": 3500, "sp": 30, "sp2": 45, "dp": 20, "rng": 15, "cycles": 10},
+        {"type":"hold", "duration_ms": 800, "sp": 0, "dp": 20, "rng": 10},
+        {"type":"burst", "duration_ms": 2000, "sp": 95, "dp": 90, "rng": 60, "burst_on_ms": 180, "burst_off_ms": 120}
+      ]}
+  },
+  { "name": "coiling_pressure",
+    "family": "snake",
+    "tags": {"focus":"mid", "texture":"smooth", "arc":"hold"},
+    "pattern": {"type":"combo","duration_ms": 10000, "sp": 40, "dp": 60, "rng": 50,
+      "combo": [
+        {"type":"sine", "duration_ms": 4000, "sp": 35, "dp": 30, "rng": 30, "cycles": 2},
+        {"type":"hold", "duration_ms": 4000, "sp": 10, "dp": 65, "rng": 10}
+      ]}
+  },
+  { "name": "serpentine_slither",
+    "family": "snake",
+    "tags": {"focus":"full", "texture":"smooth", "arc":"tease"},
+    "pattern": {"type":"sine", "duration_ms": 12000, "sp": 30, "dp": 50, "rng": 70, "cycles": 3}
+  },
+  { "name": "constrictor_squeeze",
+    "family": "snake_squeeze",
+    "tags": {"focus":"deep", "texture":"pulse", "arc":"hold"},
+    "pattern": {"type":"pulse", "duration_ms": 8000, "sp": 25, "sp2": 45, "dp": 80, "rng": 30, "cycles": 4}
+  },
+  { "name": "flicking_tongue",
+    "family": "snake_flick",
+    "tags": {"focus":"tip", "texture":"burst", "arc":"tease"},
+    "pattern": {"type":"burst", "duration_ms": 5000, "sp": 80, "dp": 10, "rng": 8, "burst_on_ms": 80, "burst_off_ms": 150}
+  },
+  { "name": "nest_of_vipers",
+    "family": "snake_chaos",
+    "tags": {"focus":"full", "texture":"burst", "arc":"finish"},
+    "pattern": {"type":"combo","duration_ms": 9000, "sp": 70, "dp": 50, "rng": 40,
+      "combo": [
+        {"type":"burst", "duration_ms": 2000, "sp": 75, "dp": 85, "rng": 20, "burst_on_ms": 100, "burst_off_ms": 100},
+        {"type":"pulse", "duration_ms": 2000, "sp": 50, "sp2": 70, "dp": 15, "rng": 15, "cycles": 5},
+        {"type":"burst", "duration_ms": 2000, "sp": 80, "dp": 50, "rng": 25, "burst_on_ms": 120, "burst_off_ms": 120},
+        {"type":"pulse", "duration_ms": 2000, "sp": 55, "sp2": 75, "dp": 90, "rng": 18, "cycles": 6}
+      ]}
+  },
+  { "name": "tail_chase",
+    "family": "snake",
+    "tags": {"focus":"full", "texture":"smooth", "arc":"ramp"},
+    "pattern": {"type":"combo","duration_ms": 8000, "sp": 60, "dp": 50, "rng": 40,
+      "combo": [
+        {"type":"sine", "duration_ms": 2500, "sp": 55, "dp": 20, "rng": 20, "cycles": 2},
+        {"type":"sine", "duration_ms": 2500, "sp": 60, "dp": 80, "rng": 20, "cycles": 2}
+      ]}
+  },
+  { "name": "hypnotic_sway",
+    "family": "snake_sway",
+    "tags": {"focus":"mid", "texture":"smooth", "arc":"tease"},
+    "pattern": {"type":"sine", "duration_ms": 15000, "sp": 25, "dp": 50, "rng": 45, "cycles": 3}
+  },
+  { "name": "triple_threat",
+    "family": "snake_chaos",
+    "tags": {"focus":"full", "texture":"pulse", "arc":"hold"},
+    "pattern": {"type":"combo", "duration_ms": 10000, "sp": 65, "dp": 50, "rng": 30,
+      "combo":[
+        {"type":"pulse", "duration_ms": 3000, "sp": 60, "sp2": 75, "dp": 15, "rng": 15, "cycles": 4},
+        {"type":"pulse", "duration_ms": 3000, "sp": 50, "sp2": 65, "dp": 85, "rng": 15, "cycles": 4},
+        {"type":"pulse", "duration_ms": 3000, "sp": 55, "sp2": 70, "dp": 50, "rng": 25, "cycles": 5}
+      ]}
+  },
+  { "name": "venomous_bite",
+    "family": "snake_bite",
+    "tags": {"focus":"tip", "texture":"burst", "arc":"ramp"},
+    "pattern": {"type":"combo", "duration_ms": 6000, "sp": 50, "dp": 10, "rng": 30,
+      "combo": [
+        {"type":"triangle", "duration_ms": 4000, "sp": 40, "dp": 15, "rng": 20},
+        {"type":"burst", "duration_ms": 1000, "sp": 90, "dp": 12, "rng": 5, "burst_on_ms": 250, "burst_off_ms": 50}
+      ]}
+  }
+]
