@@ -35,7 +35,7 @@ class StoryRunner(threading.Thread):
         self.depth_max = depth_max_mm
         self.speed_min = speed_min_hz
         self.speed_max = speed_max_hz
-        self.length_min = 10
+        self.length_min = length_min
         self.name = name
         self.seed = seed if seed is not None else random.randint(1000, 999999)
         self._stop_event = threading.Event()
@@ -73,12 +73,27 @@ class StoryRunner(threading.Thread):
 
     def run(self):
         rng = random.Random(self.seed)
-        act_timeline = [
-            ("The Trap", 90), ("The Revelation", 120),
-            ("The Test", 210), ("The Gaze", 120)
-        ]
+
+        # Dynamically build the story timeline based on the session length
+        act_defs = []
+        if self.length_min >= 60:
+            act_defs = [("Trap", 0.10), ("Revelation", 0.10), ("Test", 0.20), ("Interrogation", 0.15), ("Worship", 0.15), ("Gaze", 0.10), ("Claiming", 0.15)]
+        elif self.length_min >= 30:
+            act_defs = [("Trap", 0.15), ("Revelation", 0.15), ("Test", 0.25), ("Interrogation", 0.15), ("Worship", 0.15), ("Gaze", 0.10)]
+        else: # Default for 10, 15, 20 min sessions
+            act_defs = [("Trap", 0.15), ("Revelation", 0.20), ("Test", 0.40), ("Gaze", 0.20)]
         
-        # Get all available pattern names from the compiler's motif library
+        # Reserve ~10% of total time for the final release/outro phase
+        total_story_s = (self.length_min * 60) * 0.9
+        
+        # Create the final timeline with absolute durations in seconds
+        act_timeline = []
+        total_pct = sum(pct for _, pct in act_defs)
+        for name, pct in act_defs:
+            duration = int((pct / total_pct) * total_story_s)
+            # Ensure each act is at least a minute long if possible
+            act_timeline.append((f"The {name}", max(60, duration)))
+
         all_pattern_names = list(self.compiler.motifs.motifs_by_name.keys())
 
         for act_name, act_duration in act_timeline:
@@ -86,14 +101,13 @@ class StoryRunner(threading.Thread):
             self.act = act_name
             
             # Announce act start. These are always narrative updates and reset the timer.
-            if act_name == "The Trap":
-                self._announce("INVITE")
+            key_name = act_name.replace("The ", "").upper()
+            if key_name == "TRAP":
+                 self._announce("INVITE") # The Trap still starts with an Invite
             else:
-                key_name = act_name.replace("The ", "").upper()
                 self._announce(f"STORY_{key_name}")
 
             if self.act == "The Gaze":
-                # Specific sequence for "The Gaze" act remains hardcoded
                 self._play_events(self.compiler.compile_by_name("snake_freeze"))
                 if self._should_stop(): break
                 time.sleep(rng.uniform(4.0, 6.0))
@@ -103,7 +117,7 @@ class StoryRunner(threading.Thread):
 
             act_playlist = []
             playlist_duration_s = 0.0
-            last_pattern_info = {"name": None, "dp": None, "rng": None, "band": None} # Added band
+            last_pattern_info = {"name": None, "dp": None, "rng": None, "band": None}
 
             while playlist_duration_s < act_duration and not self._should_stop():
                 eligible_patterns = all_pattern_names
@@ -117,14 +131,8 @@ class StoryRunner(threading.Thread):
                         
                         p_data_candidate = motif_candidate['pattern']
                         current_dp = p_data_candidate.get('dp', 50)
-                        
-                        # Get the band for the current candidate
                         current_band = self.compiler._dp_to_band(current_dp)
 
-                        # Prioritize patterns that:
-                        # 1. Are in a different band (to simulate "fighting" across depth)
-                        # 2. Have a significant DP change
-                        # 3. Are simply a different pattern if band/DP change isn't large enough
                         if last_pattern_info["band"] and current_band != last_pattern_info["band"]:
                             candidate_patterns.append(p_name_candidate)
                         elif last_pattern_info["dp"] is not None and abs(current_dp - last_pattern_info["dp"]) > 30:
@@ -134,9 +142,9 @@ class StoryRunner(threading.Thread):
                     
                     if candidate_patterns:
                         pattern_name = rng.choice(candidate_patterns)
-                    else: # Fallback if no contrasting pattern found, just pick a different one
+                    else:
                         pattern_name = rng.choice([p for p in eligible_patterns if p != last_pattern_info["name"]]) if len(eligible_patterns) > 1 else eligible_patterns[0]
-                else: # First pattern in playlist
+                else:
                     pattern_name = rng.choice(eligible_patterns)
 
                 if pattern_name is None:
@@ -146,16 +154,11 @@ class StoryRunner(threading.Thread):
                 new_events = self.compiler.compile_by_name(pattern_name)
                 if not new_events: continue
 
-                # Retrieve the motif for the *selected* pattern_name before accessing its properties
                 motif = self.compiler.motifs.get_pattern(pattern_name)
                 if not motif or 'pattern' not in motif:
-                    # Default values if motif data is missing
-                    last_pattern_info["dp"] = 50
-                    last_pattern_info["rng"] = 20
-                    last_pattern_info["band"] = 'B'
+                    last_pattern_info["dp"], last_pattern_info["rng"], last_pattern_info["band"] = 50, 20, 'B'
                 else:
                     first_seg = new_events[0]
-                    # Update last_pattern_info using data from the actual motif and its first segment
                     pattern_dp = first_seg.get('dp', motif['pattern'].get('dp', 50))
                     last_pattern_info["dp"] = pattern_dp
                     last_pattern_info["rng"] = first_seg.get('range_mm', motif['pattern'].get('rng', 20))
@@ -171,7 +174,6 @@ class StoryRunner(threading.Thread):
                     act_playlist.append(evt_copy)
                 playlist_duration_s += pattern_duration * (1.0 - self.PLAYLIST_OVERLAP)
             
-            # The general narrative update check will now happen inside _play_events
             if act_playlist and not self._should_stop():
                 self._play_events(act_playlist)
 
@@ -183,11 +185,16 @@ class StoryRunner(threading.Thread):
         self.device.stop_motion()
         self._announce("OUTRO")
 
-    def _announce(self, key: str): # Simplified _announce
+    def _announce(self, key: str):
         lines = self.narrative_templates.get(key)
         if lines:
-            self.last_line = random.choice(lines)
-            self.last_narrative_line_time = time.time() # Always update for any announcement
+            full_line_with_meta = random.choice(lines)
+            bracket_pos = full_line_with_meta.find('[')
+            if bracket_pos != -1:
+                self.last_line = full_line_with_meta[:bracket_pos].strip()
+            else:
+                self.last_line = full_line_with_meta
+            self.last_narrative_line_time = time.time()
         else:
             self.last_line = f"Narrative key not found: {key}"
             
@@ -202,23 +209,18 @@ class StoryRunner(threading.Thread):
         if apply_jitter:
             hz *= random.uniform(1.0 - self.JITTER_FACTOR, 1.0 + self.JITTER_FACTOR)
             mm *= random.uniform(1.0 - self.JITTER_FACTOR, 1.0 + self.JITTER_FACTOR)
-            
-            # Add micro-hesitations for sine/triangle/hold types to simulate "slips"
-            if seg.get('type') in ['sine', 'triangle', 'hold'] and random.random() < 0.05: # 5% chance
-                hz = 0 # Brief stop
+            if seg.get('type') in ['sine', 'triangle', 'hold'] and random.random() < 0.05:
+                hz = 0
                 
         scaled_hz = self._get_scaled_hz(hz)
         self.device.set_slide_window(*self._band_to_window(seg['band'], mm))
         self.device.set_speed_hz(scaled_hz)
 
     def _play_burst(self, seg: Dict[str, Any], elapsed_in_seg: float):
-        # Apply jitter to on/off times for more erratic bursts
         jitter_ms_on = random.uniform(-self.BURST_PULSE_JITTER_MS, self.BURST_PULSE_JITTER_MS)
         jitter_ms_off = random.uniform(-self.BURST_PULSE_JITTER_MS, self.BURST_PULSE_JITTER_MS)
-
         on_ms = max(50, (seg.get('burst_on_ms', 200) + jitter_ms_on)) / 1000.0
         off_ms = max(50, (seg.get('burst_off_ms', 200) + jitter_ms_off)) / 1000.0
-
         cycle_dur = on_ms + off_ms
         if cycle_dur == 0: return self._play_default(seg, True)
         phase = elapsed_in_seg % cycle_dur
@@ -231,14 +233,10 @@ class StoryRunner(threading.Thread):
     def _play_pulse(self, seg: Dict[str, Any], elapsed_in_seg: float):
         cycles = seg.get('cycles', 4)
         cycle_dur_base = seg['duration_s'] / cycles if cycles > 0 else seg['duration_s']
-
-        # Apply jitter to cycle duration for more erratic pulses
         jitter_ms_cycle = random.uniform(-self.BURST_PULSE_JITTER_MS, self.BURST_PULSE_JITTER_MS)
         cycle_dur = max(0.1, cycle_dur_base + (jitter_ms_cycle / 1000.0))
-
         phase = (elapsed_in_seg % cycle_dur) / cycle_dur
-        sp1 = seg.get('sp', 40)
-        sp2 = seg.get('sp2', 80)
+        sp1, sp2 = seg.get('sp', 40), seg.get('sp2', 80)
         hz = (seg.get('hz', (sp1 if phase < 0.5 else sp2) / 100 * 3.0))
         scaled_hz = self._get_scaled_hz(hz)
         self.device.set_slide_window(*self._band_to_window(seg['band'], seg.get('range_mm', seg.get('rng', 25))))
@@ -256,34 +254,36 @@ class StoryRunner(threading.Thread):
             if self._pause.is_set():
                 time.sleep(self.TICK_S); continue
             
-            # Check for forced narrative update within the active playback loop
             now = time.time()
             if now - self.last_narrative_line_time > self.FORCED_NARRATIVE_INTERVAL_S:
                 current_act_key = self.act.replace("The ", "").upper()
-                narrative_pool = self.narrative_templates.get(f"STORY_{current_act_key}")
-                # Ensure there are lines for the current act, and not just INVITE/OUTRO/RELEASE
-                if narrative_pool and current_act_key not in ["INVITE", "OUTRO", "RELEASE"]:
-                    # Select a general story line for the current act
+                if self.narrative_templates.get(f"STORY_{current_act_key}"):
                     self._announce(f"STORY_{current_act_key}")
-                elif current_act_key == "GAZE": # Specific case for Gaze act
-                     self._announce("STORY_GAZE")
-
 
             now_off = time.time() - start_t
             active = [e for e in events if e['offset_s'] <= now_off < e['offset_s'] + e['duration_s']]
             
             if active:
-                seg = random.choice(active)
+                seg = None
+                dominant_band = next((s.get('dominant_band') for s in active if 'dominant_band' in s), None)
                 
+                if dominant_band:
+                    dominant_segs = [s for s in active if s['band'] == dominant_band]
+                    other_segs = [s for s in active if s['band'] != dominant_band]
+                    if random.random() < 0.8 and dominant_segs:
+                        seg = random.choice(dominant_segs)
+                    elif other_segs:
+                        seg = random.choice(other_segs)
+                    else:
+                        seg = random.choice(dominant_segs) # Fallback
+                else:
+                    seg = random.choice(active)
+
                 pattern_type = seg.get('type', 'sine')
                 elapsed_in_seg = now_off - seg['offset_s']
-                
-                if pattern_type == 'burst':
-                    self._play_burst(seg, elapsed_in_seg)
-                elif pattern_type == 'pulse':
-                    self._play_pulse(seg, elapsed_in_seg)
-                else:
-                    self._play_default(seg, apply_jitter)
+                if pattern_type == 'burst': self._play_burst(seg, elapsed_in_seg)
+                elif pattern_type == 'pulse': self._play_pulse(seg, elapsed_in_seg)
+                else: self._play_default(seg, apply_jitter)
             else:
                  self.device.set_speed_hz(0)
 

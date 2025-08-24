@@ -179,9 +179,6 @@
         {"type":"burst","duration_ms":900,"sp":88,"dp":92,"rng":58,"burst_on_ms":320,"burst_off_ms":150}
       ]}
   },
-
-  // --- NEW PATTERNS START HERE ---
-
   { "name": "snake_rattle_and_strike",
     "family": "snake",
     "tags": {"focus":"full", "texture":"burst", "arc":"ramp"},
@@ -259,5 +256,250 @@
         {"type":"triangle", "duration_ms": 4000, "sp": 40, "dp": 15, "rng": 20},
         {"type":"burst", "duration_ms": 1000, "sp": 90, "dp": 12, "rng": 5, "burst_on_ms": 250, "burst_off_ms": 50}
       ]}
+  },
+  {
+    "name": "anaconda_crush",
+    "family": "snake_squeeze",
+    "tags": {"focus": "full", "texture": "smooth", "arc": "ramp"},
+    "pattern": {"type": "combo", "duration_ms": 14000, "sp": 30, "dp": 50, "rng": 60,
+      "combo": [
+        {"type": "sine", "duration_ms": 8000, "sp": 30, "dp": 50, "rng": 60, "cycles": 2},
+        {"type": "triangle", "duration_ms": 6000, "sp": 25, "dp": 70, "rng": 20}
+      ]
+    }
+  },
+  {
+    "name": "sidewinder_slide",
+    "family": "snake",
+    "tags": {"focus": "mid", "texture": "stutter", "arc": "hold"},
+    "pattern": {"type": "combo", "duration_ms": 10000, "sp": 50, "dp": 50, "rng": 25,
+      "combo": [
+        {"type": "stair", "duration_ms": 2500, "sp": 50, "dp": 30, "rng": 25, "stair_steps": 4},
+        {"type": "stair", "duration_ms": 2500, "sp": 50, "dp": 70, "rng": 25, "stair_steps": 4},
+        {"type": "stair", "duration_ms": 2500, "sp": 50, "dp": 30, "rng": 25, "stair_steps": 4},
+        {"type": "stair", "duration_ms": 2500, "sp": 50, "dp": 70, "rng": 25, "stair_steps": 4}
+      ]
+    }
+  },
+  {
+    "name": "shedding_skin",
+    "family": "snake_texture",
+    "tags": {"focus": "full", "texture": "grind", "arc": "tease"},
+    "pattern": {"type": "pulse", "duration_ms": 9000, "sp": 20, "sp2": 35, "dp": 50, "rng": 80, "cycles": 20}
+  },
+  {
+    "name": "medusas_lullaby",
+    "family": "snake_sway",
+    "tags": {"focus": "full", "texture": "smooth", "arc": "tease"},
+    "pattern": {"type": "sine", "duration_ms": 18000, "sp": 20, "dp": 40, "rng": 70, "cycles": 3}
+  },
+  {
+    "name": "viper_strike_combo",
+    "family": "snake_bite",
+    "tags": {"focus": "full", "texture": "burst", "arc": "ramp"},
+    "pattern": {"type": "combo", "duration_ms": 8000, "sp": 60, "dp": 50, "rng": 50,
+      "combo": [
+        {"type": "hold", "duration_ms": 3000, "sp": 10, "dp": 20, "rng": 10},
+        {"type": "burst", "duration_ms": 500, "sp": 100, "dp": 95, "rng": 40, "burst_on_ms": 400, "burst_off_ms": 50},
+        {"type": "hold", "duration_ms": 3000, "sp": 10, "dp": 80, "rng": 10},
+        {"type": "burst", "duration_ms": 500, "sp": 100, "dp": 10, "rng": 40, "burst_on_ms": 400, "burst_off_ms": 50}
+      ]
+    }
+  },
+  {
+    "name": "tip_to_base_explorer",
+    "family": "edge_ramp",
+    "tags": {"focus": "full", "texture": "smooth", "arc": "ramp"},
+    "pattern": {"type": "combo", "duration_ms": 12000, "sp": 40, "dp": 10, "rng": 15,
+      "combo": [
+        {"type": "sine", "duration_ms": 3000, "sp": 35, "dp": 15, "rng": 15, "cycles": 3},
+        {"type": "sine", "duration_ms": 3000, "sp": 40, "dp": 50, "rng": 25, "cycles": 2},
+        {"type": "sine", "duration_ms": 3000, "sp": 45, "dp": 85, "rng": 20, "cycles": 2}
+      ]
+    }
+  },
+  {
+    "name": "the_long_edge",
+    "family": "edge_hover",
+    "tags": {"focus": "tip", "texture": "smooth", "arc": "tease"},
+    "pattern": {"type": "combo", "duration_ms": 15000, "sp": 35, "dp": 15, "rng": 10,
+      "combo": [
+        {"type": "sine", "duration_ms": 6000, "sp": 35, "dp": 15, "rng": 10, "cycles": 4},
+        {"type": "hold", "duration_ms": 2000, "sp": 10, "dp": 12, "rng": 5},
+        {"type": "pulse", "duration_ms": 4000, "sp": 40, "sp2": 55, "dp": 18, "rng": 12, "cycles": 5}
+      ]
+    }
+  },
+  {
+    "name": "denial_and_plead",
+    "family": "edge_ramp",
+    "tags": {"focus": "mid", "texture": "pulse", "arc": "tease"},
+    "pattern": {"type": "combo", "duration_ms": 11000, "sp": 60, "dp": 40, "rng": 30,
+      "combo": [
+        {"type": "triangle", "duration_ms": 4000, "sp": 60, "dp": 70, "rng": 50},
+        {"type": "hold", "duration_ms": 3000, "sp": 0, "dp": 20, "rng": 5},
+        {"type": "pulse", "duration_ms": 3000, "sp": 50, "sp2": 70, "dp": 15, "rng": 15, "cycles": 8}
+      ]
+    }
+  },
+  {
+    "name": "mid_rumble",
+    "family": "mid_grind",
+    "tags": {"focus": "mid", "texture": "grind", "arc": "hold"},
+    "pattern": {"type": "pulse", "duration_ms": 8000, "sp": 25, "sp2": 40, "dp": 60, "rng": 15, "cycles": 15}
+  },
+  {
+    "name": "deep_grind_ramp",
+    "family": "deep_grind",
+    "tags": {"focus": "deep", "texture": "grind", "arc": "ramp"},
+    "pattern": {"type": "combo", "duration_ms": 9000, "sp": 30, "dp": 80, "rng": 20,
+      "combo": [
+        {"type": "sine", "duration_ms": 4000, "sp": 30, "dp": 80, "rng": 20, "cycles": 2},
+        {"type": "sine", "duration_ms": 4000, "sp": 45, "dp": 90, "rng": 15, "cycles": 3}
+      ]
+    }
+  },
+  {
+    "name": "overload_cascade",
+    "family": "finish_bursts",
+    "tags": {"focus": "full", "texture": "burst", "arc": "finish"},
+    "pattern": {"type": "combo", "duration_ms": 10000, "sp": 80, "dp": 50, "rng": 70,
+      "combo": [
+        {"type": "burst", "duration_ms": 1500, "sp": 80, "dp": 20, "rng": 20, "burst_on_ms": 100, "burst_off_ms": 80},
+        {"type": "burst", "duration_ms": 1500, "sp": 85, "dp": 50, "rng": 20, "burst_on_ms": 100, "burst_off_ms": 80},
+        {"type": "burst", "duration_ms": 1500, "sp": 90, "dp": 80, "rng": 20, "burst_on_ms": 100, "burst_off_ms": 80},
+        {"type": "burst", "duration_ms": 2500, "sp": 100, "dp": 50, "rng": 80, "burst_on_ms": 200, "burst_off_ms": 50}
+      ]
+    }
+  },
+  {
+    "name": "final_convulsion",
+    "family": "finish_ladder",
+    "tags": {"focus": "deep", "texture": "pulse", "arc": "finish"},
+    "pattern": {"type": "combo", "duration_ms": 7000, "sp": 90, "dp": 85, "rng": 40,
+      "combo": [
+        {"type": "pulse", "duration_ms": 2000, "sp": 80, "sp2": 100, "dp": 85, "rng": 40, "cycles": 6},
+        {"type": "pulse", "duration_ms": 2000, "sp": 70, "sp2": 100, "dp": 90, "rng": 20, "cycles": 8},
+        {"type": "pulse", "duration_ms": 2000, "sp": 60, "sp2": 100, "dp": 80, "rng": 30, "cycles": 10}
+      ]
+    }
+  },
+  {
+    "name": "tip_pecking",
+    "family": "tip_flick",
+    "tags": {"focus": "tip", "texture": "burst", "arc": "tease"},
+    "pattern": {"type": "burst", "duration_ms": 6000, "sp": 70, "dp": 10, "rng": 5, "burst_on_ms": 60, "burst_off_ms": 250}
+  },
+  {
+    "name": "full_stroke_tease",
+    "family": "mid_wave",
+    "tags": {"focus": "full", "texture": "smooth", "arc": "tease"},
+    "pattern": {"type": "triangle", "duration_ms": 12000, "sp": 40, "dp": 50, "rng": 90}
+  },
+  {
+    "name": "the_wall",
+    "family": "deep_drive",
+    "tags": {"focus": "deep", "texture": "smooth", "arc": "hold"},
+    "pattern": {"type": "combo", "duration_ms": 9000, "sp": 55, "dp": 95, "rng": 40,
+      "combo": [
+        {"type": "triangle", "duration_ms": 7000, "sp": 55, "dp": 95, "rng": 40},
+        {"type": "hold", "duration_ms": 2000, "sp": 20, "dp": 95, "rng": 10}
+      ]
+    }
+  },
+  {
+    "name": "conflict_teaser_interrupts_plunger",
+    "family": "snake_conflict",
+    "tags": {"focus": "full", "texture": "chaotic", "arc": "ramp"},
+    "pattern": {"type": "combo", "duration_ms": 8000, "sp": 50, "dp": 80, "rng": 60,
+      "combo": [
+        {"type": "triangle", "duration_ms": 4000, "sp": 40, "dp": 80, "rng": 60},
+        {"type": "burst", "duration_ms": 800, "sp": 95, "dp": 10, "rng": 8, "burst_on_ms": 80, "burst_off_ms": 100},
+        {"type": "burst", "duration_ms": 800, "sp": 95, "dp": 15, "rng": 8, "burst_on_ms": 80, "burst_off_ms": 100},
+        {"type": "burst", "duration_ms": 800, "sp": 95, "dp": 12, "rng": 8, "burst_on_ms": 80, "burst_off_ms": 100}
+      ]
+    }
+  },
+  {
+    "name": "conflict_coiler_vs_plunger",
+    "family": "snake_conflict",
+    "tags": {"focus": "full", "texture": "stutter", "arc": "hold"},
+    "pattern": {"type": "combo", "duration_ms": 12000, "sp": 50, "dp": 50, "rng": 40,
+      "combo": [
+        {"type": "saw", "duration_ms": 2000, "sp": 50, "dp": 85, "rng": 40},
+        {"type": "sine", "duration_ms": 2000, "sp": 35, "dp": 50, "rng": 20, "cycles": 2},
+        {"type": "saw", "duration_ms": 2000, "sp": 50, "dp": 85, "rng": 40},
+        {"type": "sine", "duration_ms": 2000, "sp": 35, "dp": 50, "rng": 20, "cycles": 2},
+        {"type": "saw", "duration_ms": 2000, "sp": 50, "dp": 85, "rng": 40},
+        {"type": "sine", "duration_ms": 2000, "sp": 35, "dp": 50, "rng": 20, "cycles": 2}
+      ]
+    }
+  },
+  {
+    "name": "conflict_three_way_struggle",
+    "family": "snake_conflict",
+    "tags": {"focus": "full", "texture": "chaotic", "arc": "hold"},
+    "pattern": {"type": "combo", "duration_ms": 9000, "sp": 60, "dp": 50, "rng": 50,
+      "combo": [
+        {"type": "burst", "duration_ms": 1500, "sp": 80, "dp": 15, "rng": 10, "burst_on_ms": 100, "burst_off_ms": 150},
+        {"type": "sine", "duration_ms": 1500, "sp": 40, "dp": 50, "rng": 40, "cycles": 1},
+        {"type": "triangle", "duration_ms": 1500, "sp": 50, "dp": 80, "rng": 60},
+        {"type": "burst", "duration_ms": 1500, "sp": 85, "dp": 10, "rng": 12, "burst_on_ms": 100, "burst_off_ms": 150},
+        {"type": "sine", "duration_ms": 1500, "sp": 45, "dp": 55, "rng": 45, "cycles": 1},
+        {"type": "triangle", "duration_ms": 1500, "sp": 55, "dp": 85, "rng": 65}
+      ]
+    }
+  },
+  {
+    "name": "conflict_vise_and_viper",
+    "family": "snake_conflict",
+    "tags": {"focus": "full", "texture": "chaotic", "arc": "hold"},
+    "pattern": {"type": "combo", "duration_ms": 10000, "sp": 50, "dp": 50, "rng": 30,
+      "combo": [
+        {"type": "hold", "duration_ms": 4000, "sp": 20, "dp": 60, "rng": 10},
+        {"type": "pulse", "duration_ms": 2000, "sp": 70, "sp2": 90, "dp": 10, "rng": 8, "cycles": 5},
+        {"type": "hold", "duration_ms": 2000, "sp": 20, "dp": 60, "rng": 10},
+        {"type": "pulse", "duration_ms": 2000, "sp": 70, "sp2": 90, "dp": 15, "rng": 8, "cycles": 5}
+      ]
+    }
+  },
+  {
+    "name": "conflict_grinding_standoff",
+    "family": "snake_conflict",
+    "tags": {"focus": "full", "texture": "grind", "arc": "hold"},
+    "pattern": {"type": "combo", "duration_ms": 12000, "sp": 40, "dp": 50, "rng": 15,
+      "combo": [
+        {"type": "pulse", "duration_ms": 3000, "sp": 30, "sp2": 45, "dp": 85, "rng": 15, "cycles": 5},
+        {"type": "pulse", "duration_ms": 3000, "sp": 30, "sp2": 45, "dp": 15, "rng": 15, "cycles": 5},
+        {"type": "pulse", "duration_ms": 3000, "sp": 30, "sp2": 45, "dp": 85, "rng": 15, "cycles": 5},
+        {"type": "pulse", "duration_ms": 3000, "sp": 30, "sp2": 45, "dp": 15, "rng": 15, "cycles": 5}
+      ]
+    }
+  },
+  {
+    "name": "conflict_bait_and_switch",
+    "family": "snake_conflict",
+    "tags": {"focus": "full", "texture": "chaotic", "arc": "ramp"},
+    "pattern": {"type": "combo", "duration_ms": 11000, "sp": 40, "dp": 20, "rng": 25,
+      "combo": [
+        {"type": "sine", "duration_ms": 7000, "sp": 35, "dp": 20, "rng": 25, "cycles": 4},
+        {"type": "saw", "duration_ms": 4000, "sp": 80, "dp": 90, "rng": 80}
+      ]
+    }
+  },
+  {
+    "name": "conflict_chaotic_swarm",
+    "family": "snake_conflict",
+    "tags": {"focus": "full", "texture": "chaotic", "arc": "finish"},
+    "pattern": {"type": "combo", "duration_ms": 9000, "sp": 75, "dp": 50, "rng": 40,
+      "combo": [
+        {"type": "burst", "duration_ms": 1000, "sp": 70, "dp": 80, "rng": 20, "burst_on_ms": 80, "burst_off_ms": 120},
+        {"type": "burst", "duration_ms": 1000, "sp": 90, "dp": 20, "rng": 10, "burst_on_ms": 60, "burst_off_ms": 100},
+        {"type": "pulse", "duration_ms": 1000, "sp": 60, "sp2": 80, "dp": 50, "rng": 30, "cycles": 3},
+        {"type": "burst", "duration_ms": 1000, "sp": 75, "dp": 85, "rng": 25, "burst_on_ms": 80, "burst_off_ms": 120},
+        {"type": "burst", "duration_ms": 1000, "sp": 95, "dp": 15, "rng": 15, "burst_on_ms": 60, "burst_off_ms": 100},
+        {"type": "pulse", "duration_ms": 1000, "sp": 65, "sp2": 85, "dp": 55, "rng": 35, "cycles": 3}
+      ]
+    }
   }
 ]

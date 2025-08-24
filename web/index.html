@@ -39,18 +39,15 @@ body{
 .wrap{max-width:800px;margin:26px auto;padding:0 18px}
 header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .brand{display:flex;align-items:center;gap:12px;font-weight:700}
-/* Removed .logo styling as the element is removed */
-/* body.session-active .logo { animation: pulse-glow-active 1.5s ease-in-out infinite; } */
 .tagline{color:var(--muted);font-size:.9rem}
 .grid{display: flex; flex-direction: column; gap:22px}
 .card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)), rgba(14, 21, 25, 0.85);
   border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);overflow:hidden; backdrop-filter: blur(8px); }
 
-/* Enhanced card header with more prominent gradient */
 .card-head{
   padding:18px 20px;
   border-bottom:1px solid rgba(255,255,255,.06);
-  background:linear-gradient(180deg, rgba(0,229,192,.15), rgba(245,200,75,.05)); /* Teal to Gold gradient */
+  background:linear-gradient(180deg, rgba(0,229,192,.15), rgba(245,200,75,.05));
 }
 
 .card-body{padding:20px}
@@ -58,31 +55,29 @@ header{display:flex;align-items:center;justify-content:space-between;margin-bott
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.9) contrast(1.1)}
 .hero:after{content:"";position:absolute;inset:0;background:radial-gradient(70% 50% at 50% 30%, transparent 0%, rgba(0,0,0,.35) 65%, rgba(0,0,0,.7) 100%);}
 
-/* Styles for the new title (repurposed from .halo) */
 .game-title {
   position: absolute;
-  bottom: 12px; /* Position at the bottom */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Adjust for perfect horizontal centering */
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
   background: linear-gradient(90deg, var(--teal), var(--gold));
-  padding: 8px 20px; /* Slightly reduced padding */
+  padding: 8px 20px;
   border-radius: 999px;
   color: #0b1012;
-  font-weight: 900; /* Bolder font */
-  font-size: 1.5rem; /* Reduced font size to fit on one line */
-  letter-spacing: 1px; /* Slightly reduced letter spacing */
-  text-transform: uppercase; /* All caps for title feel */
-  white-space: nowrap; /* Ensure it stays on one line */
-  box-shadow: 0 0 30px rgba(0,229,192,.4), 0 0 20px rgba(245,200,75,.3); /* Stronger glow */
-  text-shadow: 0 0 12px rgba(255,255,255,.6); /* More prominent text glow */
-  z-index: 10; /* Ensure it's above the image overlay */
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 0 0 30px rgba(0,229,192,.4), 0 0 20px rgba(245,200,75,.3);
+  text-shadow: 0 0 12px rgba(255,255,255,.6);
+  z-index: 10;
 }
 
 .row{display:grid;gap:18px;margin-bottom:20px}
 
-/* Input fields with subtle gradient */
 .field{
-  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); /* Subtle gradient */
+  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
   border:1px solid rgba(255,255,255,.08);
   border-radius:14px;padding:14px
 }
@@ -91,25 +86,54 @@ header{display:flex;align-items:center;justify-content:space-between;margin-bott
 .desc{font-size:.8rem; color:var(--muted); margin-bottom: 8px;}
 .badge{font-variant-numeric:tabular-nums;background:rgba(0,229,192,.12);border:1px solid rgba(0,229,192,.35);padding:2px 8px;border-radius:999px}
 .range{position:relative;height:42px;display:flex;align-items:center}
-.track{position:absolute;left:0;right:0;height:6px;border-radius:999px;background:linear-gradient(90deg, rgba(255,255,255,.1), rgba(255,255,255,.06))}
-.fill{position:absolute;height:100%;background:linear-gradient(90deg, var(--teal), var(--gold));border-radius:999px;box-shadow:0 0 16px rgba(0,229,192,.25)}
-input[type=range]{appearance:none;position:absolute;left:0;right:0;width:100%;height:6px;background:transparent}
-input[type=range]::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:50%;background:#0c1417;border:2px solid var(--teal);box-shadow:0 0 0 4px rgba(0,229,192,.2)}
-input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#0c1417;border:2px solid var(--teal);box-shadow:0 0 0 4px rgba(0,229,192,.2)}
+
+.track{
+  position:absolute;left:0;right:0;height:10px;border-radius:999px;
+  background-color: #0c1417;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255,255,255,.05) 4px, rgba(255,255,255,.05) 8px);
+  box-shadow: inset 0 1px 4px rgba(0,0,0,.4);
+}
+.fill{
+  position:absolute;height:100%;
+  background:linear-gradient(90deg, var(--teal), var(--gold));
+  border-radius:999px;
+  box-shadow:0 0 18px rgba(0,229,192,.4), 0 0 12px rgba(245,200,75,.3);
+}
+input[type=range]{
+  appearance:none;position:absolute;left:0;right:0;width:100%;height:10px;background:transparent;
+  pointer-events: none;
+}
+input[type=range]::-webkit-slider-thumb{
+  appearance:none;width:16px;height:16px;border-radius:3px;
+  background: var(--bg);
+  border:2px solid var(--teal);
+  box-shadow:0 0 0 4px rgba(0,229,192,.25), 0 0 8px rgba(0,0,0,.5);
+  transform: rotate(45deg); cursor: grab;
+  pointer-events: auto;
+}
+input[type=range]::-moz-range-thumb{
+  width:16px;height:16px;border-radius:3px;
+  background:var(--bg);
+  border:2px solid var(--teal);
+  box-shadow:0 0 0 4px rgba(0,229,192,.25), 0 0 8px rgba(0,0,0,.5);
+  transform: rotate(45deg); cursor: grab;
+  pointer-events: auto;
+}
+
 .actions{display:flex;gap:12px;margin-top:16px}
 .btn{
   appearance:none;border:0;cursor:pointer;padding:14px 18px;border-radius:14px;font-weight:800;letter-spacing:.4px;
   color:#0b1012;background:linear-gradient(90deg, var(--teal), var(--gold));
   box-shadow:0 12px 26px rgba(0,0,0,.35), 0 0 30px rgba(0,229,192,.18);
   flex-grow: 1;
-  transition: all 0.2s ease-in-out; /* Smooth transition for hover/active */
+  transition: all 0.2s ease-in-out;
 }
 .btn:hover{
-  box-shadow:0 12px 30px rgba(0,0,0,.45), 0 0 40px rgba(0,229,192,.25); /* More prominent shadow on hover */
-  transform: translateY(-2px); /* Slight lift */
+  box-shadow:0 12px 30px rgba(0,0,0,.45), 0 0 40px rgba(0,229,192,.25);
+  transform: translateY(-2px);
 }
 .btn:active{
-  transform: translateY(0); /* Press down effect */
+  transform: translateY(0);
   box-shadow:0 6px 16px rgba(0,0,0,.25), 0 0 20px rgba(0,229,192,.1);
 }
 .btn.secondary{background:rgba(255,255,255,.04);color:var(--text);border:1px solid rgba(255,255,255,.1);box-shadow:none}
@@ -118,17 +142,16 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .topbar{display:flex;gap:10px;align-items:center;margin:16px 0 8px; justify-content:flex-end;}
 .pill{padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:.9rem}
 
-/* Main narrative text with subtle glow */
 .lines{
   min-height:72px;padding:14px;border-radius:14px;
   background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.06);
   font-size:1.1rem; line-height: 1.5; white-space: pre-wrap;
-  text-shadow: 0 0 6px rgba(0,229,192,.1), 0 0 3px rgba(245,200,75,.05); /* Teal and gold subtle glow */
+  text-shadow: 0 0 6px rgba(0,229,192,.1), 0 0 3px rgba(245,200,75,.05);
 }
 .timer{font-variant-numeric:tabular-nums}
 
 .modal{position:fixed;inset:0;background:rgba(11,15,18,.8);backdrop-filter:blur(10px);z-index:100;display:flex;align-items:center;justify-content:center;padding:18px;color:var(--text)}
-.modal-content{width:100%;max-width:500px;background:var(--panel);border-radius:var(--radius);padding:24px;border:1px solid rgba(255,255,255,.08);box-shadow:0 16px 40px rgba(0,0,0,.4); position:relative; overflow:hidden;}
+.modal-content{width:100%;max-width:650px;background:var(--panel);border-radius:var(--radius);padding:24px;border:1px solid rgba(255,255,255,.08);box-shadow:0 16px 40px rgba(0,0,0,.4); position:relative; overflow:hidden;}
 .modal-content h2, .modal-content p, .modal-content div { position: relative; z-index: 2; }
 
 #intensityModal .modal-content {
@@ -138,25 +161,72 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
     background-size: cover;
     background-position: center 70%;
 }
+.rune-container { display: flex; justify-content: space-around; gap: 10px; margin-top: 20px; }
+.intensity-rune {
+  flex: 1;
+  text-align: center;
+  margin-bottom:12px;
+  background:rgba(11,15,18,.5);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  padding:14px 8px;
+  cursor:pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+.intensity-rune:before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0,229,192,.25) 0%, rgba(0,229,192,0) 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.intensity-rune:hover {
+  border-color: var(--teal);
+  box-shadow: 0 0 20px rgba(0,229,192,.2);
+}
+.intensity-rune:hover:before { opacity: 1; }
+.intensity-rune .k{font-size:0.9rem;font-weight:700;color:var(--text); letter-spacing: 0.5px; text-transform: uppercase;}
+.intensity-rune .desc{font-size:0.8rem;margin:4px 0 0;color:var(--muted); opacity: 0; height: 0; transition: all 0.2s ease-in-out; }
+.intensity-rune:hover .desc { opacity: 1; height: auto; }
 
-.intensity-btn{display:block;width:100%;text-align:left;margin-bottom:12px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px;cursor:pointer;}
-.intensity-btn:hover{border-color:var(--teal);}
-.intensity-btn .k{font-size:1rem;font-weight:700;color:var(--text);}
-.intensity-btn .desc{font-size:0.9rem;margin:4px 0 0;color:var(--muted);}
+.length-selector { display: flex; gap: 10px; }
+.length-btn {
+  flex-grow: 1;
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.08);
+  color: var(--muted);
+  border-radius:10px;
+  padding:10px;
+  cursor:pointer;
+  font-weight: 700;
+  transition: all 0.2s ease-in-out;
+}
+.length-btn:hover { border-color: var(--gold); color: var(--gold); }
+.length-btn.active {
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  color: #0b1012;
+  border-color: var(--teal);
+  box-shadow: 0 0 15px rgba(0,229,192,.2);
+}
 
-/* Text input specific styling */
 input[type="text"] {
-    background: linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,0)); /* Lighter gradient for input */
+    background: linear-gradient(180deg, rgba(255,255,255,.01), rgba(255,255,255,0));
     border: 1px solid rgba(255,255,255,.1);
     color: var(--text);
     padding: 10px;
     border-radius: 10px;
     outline: none;
-    box-shadow: inset 0 0 8px rgba(0,0,0,.3); /* Inner shadow for depth */
+    box-shadow: inset 0 0 8px rgba(0,0,0,.3);
     transition: border-color 0.2s ease-in-out;
 }
 input[type="text"]:focus {
-    border-color: var(--teal); /* Highlight border on focus */
+    border-color: var(--teal);
 }
 
 </style>
@@ -174,13 +244,13 @@ input[type="text"]:focus {
   <div class="grid">
     <section class="card">
       <div class="hero">
-        <img src="assets/medusa.png" alt="Medusa background"/>
-        <div class="game-title">Sedusa • Story Mode</div>
+        <img id="hero-image" src="assets/medusa.png" alt="Medusa background"/>
+        <div class="game-title">Sedusa</div>
       </div>
       <div class="card-body">
         <div class="lines" id="lines">I am waiting...</div>
         <div class="topbar">
-          <div class="pill">Session Time: 10:00</div>
+          <div class="pill" id="session-time">Session Time: 10:00</div>
           <div class="pill timer">Remaining: <span id="remaining">10:00</span></div>
         </div>
         <div class="note"></div> </div>
@@ -206,11 +276,15 @@ input[type="text"]:focus {
         </div>
 
         <div class="row">
-           <div class="field">
-            <div class="label"><div class="k">Your Name (Optional)</div></div>
-            <input id="name" type="text" placeholder="Tell me what to call you..."/>
+            <div class="field">
+              <div class="label"><div class="k">Session Length</div></div>
+              <div class="length-selector" id="length-selector">
+                  <button class="length-btn" data-length="5">5 MIN</button>
+                  <button class="length-btn" data-length="10">10 MIN</button>
+                  <button class="length-btn" data-length="15">15 MIN</button>
+              </div>
+            </div>
           </div>
-        </div>
 
         <div class="actions">
           <button id="start" class="btn">Surrender Control</button>
@@ -227,6 +301,8 @@ input[type="text"]:focus {
 <script>
 const $ = s=>document.querySelector(s);
 
+let sessionHasBeenActive = false;
+
 const state = {
   depthMin:+localStorage.getItem('depthMin')||40,
   depthMax:+localStorage.getItem('depthMax')||90,
@@ -234,16 +310,15 @@ const state = {
   speedMax: null,
   intensityName: null,
   length: 10,
-  name: localStorage.getItem('name') || "",
   apiKey: null
 };
 
 const INTENSITY_LEVELS = [
-  { name: 'Gentle Coils', desc: 'A slow, hypnotic trance. Barely a whisper of movement.', min: 0.4, max: 0.8 },
-  { name: 'Teasing Testers', desc: 'Playful nips and curious slides. I want to see you shiver.', min: 0.7, max: 1.2 },
-  { name: 'Possessive Embrace', desc: 'My grip is firm, my rhythm commanding. The standard experience.', min: 1.0, max: 2.0 },
-  { name: 'Rough Claiming', desc: 'A frantic, desperate struggle. I will take what I want.', min: 1.5, max: 2.8 },
-  { name: 'Overwhelming Gaze', desc: 'Unrelenting, chaotic, and absolute. You will be broken.', min: 2.0, max: 3.2 }
+  { name: 'Gentle', desc: 'A slow, hypnotic trance. Barely a whisper of movement.', min: 0.4, max: 0.8 },
+  { name: 'Teasing', desc: 'Playful nips and curious slides. I want to see you shiver.', min: 0.7, max: 1.2 },
+  { name: 'Possessive', desc: 'My grip is firm, my rhythm commanding. The standard experience.', min: 1.0, max: 2.0 },
+  { name: 'Rough', desc: 'A frantic, desperate struggle. I will take what I want.', min: 1.5, max: 2.8 },
+  { name: 'Brutal', desc: 'Unrelenting, chaotic, and absolute. You will be broken.', min: 2.0, max: 3.2 }
 ];
 
 function pct(v, lo, hi){ return 100*((v-lo)/(hi-lo)); }
@@ -254,18 +329,24 @@ function applyFill(kind,min,max,lo,hi){
 }
 function syncUI(){
   $('#depthMin').value=state.depthMin; $('#depthMax').value=state.depthMax;
-  $('#name').value=state.name;
-  // Updated formatting for depthReadout
   $('#depthReadout').textContent = `Tip: ${state.depthMin}mm – Base: ${state.depthMax}mm`;
   $('#intensityReadout').textContent = state.intensityName || 'Not Selected';
   applyFill('depth', state.depthMin, state.depthMax, 15, 110);
-  $('#start').disabled = !state.intensityName;
+  $('#start').disabled = !state.apiKey || !state.intensityName;
+  
+  // Update session length UI
+  const sessionTimeStr = String(state.length).padStart(2,'0') + ':00';
+  $('#session-time').textContent = 'Session Time: ' + sessionTimeStr;
+  const remainingTime = document.body.classList.contains('session-active') ? $('#remaining').textContent : sessionTimeStr;
+  $('#remaining').textContent = remainingTime;
+
+  document.querySelectorAll('.length-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.length == state.length);
+  });
 }
 function save(){
-  // API key is no longer saved client-side
   localStorage.setItem('depthMin', state.depthMin);
   localStorage.setItem('depthMax', state.depthMax);
-  localStorage.setItem('name', state.name);
 }
 ['depthMin','depthMax'].forEach(id=>{
   $('#'+id).addEventListener('input', ()=>{
@@ -275,39 +356,81 @@ function save(){
   });
   $('#'+id).addEventListener('change', save);
 });
-$('#name').addEventListener('change', e=>{ state.name=e.target.value.trim(); save(); });
+
+$('#length-selector').addEventListener('click', e => {
+    if (e.target.classList.contains('length-btn')) {
+        state.length = +e.target.dataset.length;
+        syncUI();
+    }
+});
 
 async function post(url, body){ const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body||{})}); return r.json(); }
 function msToClock(ms){ const s=Math.max(0,Math.floor(ms/1000)); const m=String(Math.floor(s/60)).padStart(2,'0'); const ss=String(s%60).padStart(2,'0'); return `${m}:${ss}`; }
 
+let typeInterval = null;
+let currentLine = "";
+function typeWriter(element, text) {
+    if (typeInterval) clearInterval(typeInterval);
+    const words = text.split(' ');
+    let wordIndex = 0;
+    element.textContent = '';
+    
+    typeInterval = setInterval(() => {
+        if (wordIndex < words.length) {
+            element.textContent += (wordIndex > 0 ? ' ' : '') + words[wordIndex];
+            wordIndex++;
+        } else {
+            clearInterval(typeInterval);
+        }
+    }, 150);
+}
+
 async function poll(){
   try{
     const s = await fetch('/status').then(r=>r.json());
+    
     if (s.state === 'running') {
         document.body.classList.add('session-active');
     } else {
         document.body.classList.remove('session-active');
     }
-    $('#remaining').textContent = msToClock(s.t_remaining_ms||(state.length * 60000));
-    if(s.last_line) $('#lines').textContent = s.last_line;
+
+    if (sessionHasBeenActive && s.state === 'stopped' && s.t_remaining_ms <= 0) {
+        const heroImg = $('#hero-image');
+        if (!heroImg.src.includes('sneepy')) {
+            const images = ['sneepy1.png', 'sneepy2.png'];
+            const chosenImage = images[Math.floor(Math.random() * images.length)];
+            heroImg.src = 'assets/' + chosenImage;
+        }
+    }
+
+    const remainingTime = s.state === 'idle' ? state.length * 60000 : s.t_remaining_ms;
+    $('#remaining').textContent = msToClock(remainingTime);
+
+    if(s.last_line && s.last_line !== currentLine) {
+        currentLine = s.last_line;
+        typeWriter($('#lines'), currentLine);
+    }
   }catch(e){}
 }
 
 $('#start').addEventListener('click', async ()=>{
   if ($('#start').disabled) return;
+  sessionHasBeenActive = true;
   document.body.classList.add('session-active');
+  $('#hero-image').src = 'assets/medusa.png';
   const payload = {
     depth_min: state.depthMin, depth_max: state.depthMax,
     speed_min: state.speedMin, speed_max: state.speedMax,
-    length_min: state.length, name: state.name || null,
-    // API key is no longer sent from client on start, it's server-side
-    // api_key: state.apiKey
+    length_min: state.length,
+    api_key: state.apiKey
   };
   const resp = await post('/start', payload);
   if(resp.ok){ poll(); } else { document.body.classList.remove('session-active'); }
 });
 $('#stop').addEventListener('click', ()=>{
     document.body.classList.remove('session-active');
+    $('#hero-image').src = 'assets/medusa.png';
     post('/stop');
 });
 
@@ -324,53 +447,42 @@ function createModal(id, title, content) {
     return modal;
 }
 
-async function initOnboarding() {
-  // Check if API key exists on the server
-  const checkKeyResponse = await fetch('/check_api_key').then(r => r.json());
-  if (checkKeyResponse.has_api_key) {
-    // If server has key, proceed directly to intensity modal
-    showIntensityModal();
-    return;
-  }
-  
+function showApiKeyModal() {
   const keyModal = createModal('apiKeyModal',
-    `<h2>My Connection Key</h2><p>To command your device, I require your Handy Connection Key. It will be securely saved on the server for future use.</p>`,
+    `<h2>My Connection Key</h2><p>To command my snakes, I require your Handy Connection Key for this session.</p>`,
     `<div>
         <input id="handyKeyInput" type="text" placeholder="Paste your connection key here..." style="width:100%;background:#0b1216;color:#e8f6f3;border:1px solid rgba(255,255,255,.1);padding:14px;border-radius:10px;outline:none;margin-top:8px;margin-bottom:16px">
         <button id="saveKeyBtn" class="btn">Grant Me Control</button>
      </div>`
   );
 
-  $('#saveKeyBtn').addEventListener('click', async () => {
+  $('#saveKeyBtn').addEventListener('click', () => {
     const key = $('#handyKeyInput').value.trim();
     if (key) {
-      // Send key to server to save
-      const saveResponse = await post('/save_api_key', { api_key: key });
-      if (saveResponse.ok) {
-        document.body.removeChild(keyModal);
-        showIntensityModal();
-      } else {
-        alert("Failed to save API key on server: " + saveResponse.error);
-      }
+      state.apiKey = key;
+      syncUI();
+      document.body.removeChild(keyModal);
+      showIntensityModal();
     }
   });
 }
 
 function showIntensityModal() {
-    let buttonsHTML = '';
+    let runesHTML = '';
     INTENSITY_LEVELS.forEach((level, index) => {
-        buttonsHTML += `<button class="intensity-btn" data-index="${index}">
+        const shortDesc = level.desc.split('.')[0] + '.';
+        runesHTML += `<button class="intensity-rune" data-index="${index}">
             <div class="k">${level.name}</div>
-            <div class="desc">${level.desc}</div>
+            <div class="desc">${shortDesc}</div>
         </button>`;
     });
 
     const intensityModal = createModal('intensityModal',
         `<h2>How Shall I Treat You?</h2><p>Your choice determines the pace and aggression of my snakes for the entire session. Choose wisely.</p>`,
-        `<div>${buttonsHTML}</div>`
+        `<div class="rune-container">${runesHTML}</div>`
     );
 
-    intensityModal.querySelectorAll('.intensity-btn').forEach(btn => {
+    intensityModal.querySelectorAll('.intensity-rune').forEach(btn => {
         btn.addEventListener('click', () => {
             const level = INTENSITY_LEVELS[btn.dataset.index];
             state.speedMin = level.min;
@@ -382,7 +494,7 @@ function showIntensityModal() {
     });
 }
 
-initOnboarding();
+showApiKeyModal();
 </script>
 </body>
 </html>

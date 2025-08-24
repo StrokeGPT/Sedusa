@@ -16,17 +16,19 @@ class HandyClient:
     def __init__(
         self,
         mode: str = "simulate",
-        base_url: str = "", # This is now ignored, but kept for compatibility.
         api_key: str = "",
         log_device: bool = True,
         timeout_s: float = 5.0,
+        max_speed_hz: float = 3.2,
+        speed_calibration_factor: float = 2.8
     ) -> None:
         self.mode = mode
-        # The base URL is now hardcoded to the correct v2 endpoint.
         self.base_url = "https://www.handyfeeling.com/api/handy/v2/"
         self.api_key = api_key
         self.log = log_device
         self.timeout = timeout_s
+        self.max_speed_hz = max_speed_hz
+        self.speed_calibration_factor = speed_calibration_factor
 
         self._slide_window: Optional[Tuple[float, float]] = None
         self._speed_hz: Optional[float] = None
@@ -92,14 +94,16 @@ class HandyClient:
         if not self._slide_window:
             return  # Wait for slide window to be set first.
 
-        # Convert Hz to device velocity (0-100) based on the current window size.
+        # CORRECTED FORMULA: This formula correctly ties frequency (Hz) to stroke length
+        # to produce a physically consistent velocity, while the calibration factor
+        # tunes the final result to feel correct on the Handy's 0-100 scale.
         window_mm = self._slide_window[1] - self._slide_window[0]
         window_pct = (window_mm / self.FULL_TRAVEL_MM) * 100
         
-        # CORRECTED FORMULA: This formula provides a much more balanced conversion
-        # from frequency (Hz) to the device's 0-100 velocity scale, preventing
-        # the speed from maxing out at large stroke ranges.
-        velocity = int(window_pct * hz)
+        raw_velocity = window_pct * hz
+        
+        # Apply calibration factor to tune the perceived speed.
+        velocity = int(raw_velocity / self.speed_calibration_factor)
 
         self._put("hamp/velocity", {"velocity": max(0, min(100, velocity))})
 

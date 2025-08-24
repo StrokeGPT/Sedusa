@@ -6,7 +6,8 @@
   "device": {
     "mode": "handy",
     "api_key": "",
-    "log_device": true
+    "log_device": true,
+    "speed_calibration_factor": 2.8
   },
   "caps": {
     "depth_min_mm": 15,

@@ -19,43 +19,55 @@ class TokenCompiler:
 
     def compile_by_name(self, name: str, overlap: float = 0.3) -> List[Dict]:
         """
-        Looks up a pattern by name and converts its 'combo' into a list of
-        overlapping timed events. Publicly accessible.
+        Looks up a pattern by name and converts it into a list of
+        timed events. It now also injects special tags like 'dominant_band'.
         """
         motif = self.motifs.get_pattern(name)
         if not motif or 'pattern' not in motif:
-            # Return a silent, 1-second pattern as a fallback.
             return [{'band': 'B', 'hz': 0, 'range_mm': 0, 'offset_s': 0, 'duration_s': 1}]
 
         p = motif['pattern']
-        # Handle single-segment patterns directly
+        tags = motif.get("tags", {})
+        dominant_band = tags.get("dominant_band")
+
+        # Base properties for all segments from this pattern
+        base_props = {}
+        if dominant_band:
+            base_props['dominant_band'] = dominant_band
+
+        # Handle single-segment patterns
         if p.get('type') != 'combo' or not p.get('combo'):
-            return [{
+            event = {
                 'band': self._dp_to_band(p.get('dp', 50)),
-                'hz': p.get('sp', 50) / 100 * 3.0, # Convert % to approx Hz
+                'hz': p.get('sp', 50) / 100 * 3.0,
                 'range_mm': p.get('rng', 20),
                 'offset_s': 0,
-                'duration_s': p.get('duration_ms', 5000) / 1000.0
-            }]
+                'duration_s': p.get('duration_ms', 5000) / 1000.0,
+                **p,
+                **base_props
+            }
+            return [event]
 
         combo = p['combo']
-        total_d = p['duration_ms'] / 1000.0
+        total_d = p.get('duration_ms', 5000) / 1000.0
         band_count = len(combo)
         
-        # Calculate duration and step for overlap
         band_dur = total_d / (band_count - overlap * (band_count - 1)) if band_count > 1 else total_d
         step = band_dur * (1 - overlap)
         
         events = []
         for idx, seg in enumerate(combo):
             offset = idx * step
-            events.append({
+            event = {
                 'band': self._dp_to_band(seg.get('dp', p.get('dp', 50))),
                 'hz': seg.get('sp', p.get('sp', 50)) / 100 * 3.0,
                 'range_mm': seg.get('rng', p.get('rng', 20)),
                 'offset_s': offset,
-                'duration_s': band_dur
-            })
+                'duration_s': seg.get('duration_ms', band_dur * 1000) / 1000.0,
+                **seg,
+                **base_props
+            }
+            events.append(event)
         return events
 
     # --- Shortcut methods for specific story beats ---

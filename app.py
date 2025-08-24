@@ -15,9 +15,10 @@ app = Flask(__name__, static_folder=str(APP_ROOT / "web"), static_url_path="")
 def load_config():
     cfg_path = APP_ROOT / "config.json"
     if not cfg_path.exists():
+        # api_key is no longer stored in config
         return {
             "server": {"host": "0.0.0.0", "port": 7860},
-            "device": {"mode": "simulate", "api_key": "", "log_device": True},
+            "device": {"mode": "simulate", "log_device": True, "speed_calibration_factor": 2.8},
             "caps": {
                 "depth_min_mm": 15, "depth_max_mm": 110,
                 "speed_min_hz": 0.4, "speed_max_hz": 3.2,
@@ -27,15 +28,6 @@ def load_config():
         return json.load(f)
 
 CONFIG = load_config()
-
-def save_config(config_data):
-    cfg_path = APP_ROOT / "config.json"
-    try:
-        with open(cfg_path, "w", encoding="utf-8") as f:
-            json.dump(config_data, f, indent=2)
-        print(f"[Config] Updated config.json successfully.")
-    except IOError as e:
-        print(f"[Config] ERROR: Could not save config.json: {e}")
 
 # ---------- Content Loading ----------
 def load_narrative_content():
@@ -70,11 +62,13 @@ def build_runner(params, api_key: str | None):
                 runner.stop()
                 runner.join(timeout=1.0)
 
-        # Create the device object first.
+        # Create the device object first, using the key provided by the client.
         device = HandyClient(
             mode=CONFIG["device"]["mode"],
-            api_key=api_key or CONFIG["device"].get("api_key",""),
-            log_device=CONFIG["device"].get("log_device", True)
+            api_key=api_key,
+            log_device=CONFIG["device"].get("log_device", True),
+            max_speed_hz=CONFIG["caps"]["speed_max_hz"],
+            speed_calibration_factor=CONFIG["device"].get("speed_calibration_factor", 2.8)
         )
 
         # Then create the runner, passing the device object to it.
@@ -102,39 +96,22 @@ def root():
 def assets(filename):
     return send_from_directory(str(APP_ROOT / "web" / "assets"), filename)
 
-@app.post("/save_api_key")
-def save_api_key():
-    data = request.get_json(force=True, silent=True) or {}
-    key = data.get("api_key", "").strip()
-
-    if not key:
-        return jsonify({"ok": False, "error": "API key not provided"}), 400
-    
-    # Update CONFIG and save it
-    CONFIG["device"]["api_key"] = key
-    save_config(CONFIG)
-
-    return jsonify({"ok": True, "message": "API key saved successfully"})
-
-@app.get("/check_api_key")
-def check_api_key():
-    # Return whether an API key is present in the server's config
-    return jsonify({"has_api_key": bool(CONFIG["device"].get("api_key"))})
-
-
 @app.post("/start")
 def start_story():
     data = request.get_json(force=True, silent=True) or {}
+    api_key = data.get("api_key")
+    if not api_key:
+        return jsonify({"ok": False, "error": "API key is required"}), 400
+
     try:
         depth_min = float(data.get("depth_min"))
         depth_max = float(data.get("depth_max"))
         speed_min = float(data.get("speed_min"))
         speed_max = float(data.get("speed_max"))
-    except Exception:
+        length_min = int(data.get("length_min", 10))
+    except (TypeError, ValueError):
         return jsonify({"ok": False, "error": "Missing or invalid parameters"}), 400
     
-    length_min = 10
-
     caps = CONFIG["caps"]
     depth_min = max(caps["depth_min_mm"], min(depth_min, caps["depth_max_mm"]))
     depth_max = max(depth_min, min(depth_max, caps["depth_max_mm"]))
@@ -151,8 +128,7 @@ def start_story():
         "seed": data.get("seed")
     }
     
-    # Use the API key directly from the server's CONFIG for building the runner
-    r = build_runner(params, CONFIG["device"].get("api_key"))
+    r = build_runner(params, api_key)
     return jsonify({"ok": True, "state": r.state_snapshot()})
 
 @app.post("/pause")

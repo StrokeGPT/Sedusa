@@ -53,5 +53,84 @@
     "family": "snake",
     "tags": { "pattern": "freeze" },
     "pattern": { "type": "hold", "duration_ms": 800, "sp": 30, "dp": 50, "rng": 10 }
+  },
+  {
+    "name": "snake_bite",
+    "family": "snake",
+    "tags": { "pattern": "bite" },
+    "pattern": { "type": "burst", "duration_ms": 400, "sp": 100, "dp": 50, "rng": 15, "burst_on_ms": 300, "burst_off_ms": 50 }
+  },
+  {
+    "name": "snake_hiss_rattle",
+    "family": "snake",
+    "tags": { "pattern": "hiss" },
+    "pattern": { "type": "pulse", "duration_ms": 4000, "sp": 20, "sp2": 35, "dp": 10, "rng": 8, "cycles": 15 }
+  },
+  {
+    "name": "snake_squeeze",
+    "family": "snake",
+    "tags": { "pattern": "squeeze" },
+    "pattern": {
+      "type": "combo", "duration_ms": 8000, "sp": 30, "dp": 70, "rng": 25,
+      "combo": [
+        { "type": "triangle", "duration_ms": 6000, "sp": 30, "dp": 70, "rng": 25 },
+        { "type": "hold", "duration_ms": 2000, "sp": 15, "dp": 75, "rng": 10 }
+      ]
+    }
+  },
+  {
+    "name": "snake_strike",
+    "family": "snake",
+    "tags": { "pattern": "strike" },
+    "pattern": { "type": "saw", "duration_ms": 800, "sp": 95, "dp": 50, "rng": 80 }
+  },
+  {
+    "name": "snake_full_embrace",
+    "family": "snake",
+    "tags": { "pattern": "embrace" },
+    "pattern": { "type": "sine", "duration_ms": 15000, "sp": 25, "dp": 50, "rng": 90, "cycles": 3 }
+  },
+  {
+    "name": "snake_scan",
+    "family": "snake",
+    "tags": { "pattern": "scan" },
+    "pattern": {
+      "type": "combo", "duration_ms": 9000, "sp": 30, "dp": 10, "rng": 10,
+      "combo": [
+        { "type": "hold", "duration_ms": 3000, "sp": 30, "dp": 10, "rng": 10 },
+        { "type": "hold", "duration_ms": 3000, "sp": 30, "dp": 50, "rng": 10 },
+        { "type": "hold", "duration_ms": 3000, "sp": 30, "dp": 90, "rng": 10 }
+      ]
+    }
+  },
+  {
+    "name": "snake_tail_whip",
+    "family": "snake",
+    "tags": { "pattern": "whip" },
+    "pattern": { "type": "saw", "duration_ms": 500, "sp": 85, "dp": 20, "rng": 30 }
+  },
+  {
+    "name": "snake_uncoil",
+    "family": "snake",
+    "tags": { "pattern": "uncoil" },
+    "pattern": { "type": "triangle", "duration_ms": 9000, "sp": 40, "dp": 20, "rng": 70 }
+  },
+  {
+    "name": "snake_double_coil",
+    "family": "snake",
+    "tags": { "pattern": "double_coil" },
+    "pattern": {
+      "type": "combo", "duration_ms": 10000, "sp": 50, "dp": 50, "rng": 40,
+      "combo": [
+        { "type": "sine", "duration_ms": 10000, "sp": 50, "dp": 25, "rng": 40, "cycles": 4 },
+        { "type": "sine", "duration_ms": 10000, "sp": 40, "dp": 75, "rng": 40, "cycles": 3 }
+      ]
+    }
+  },
+  {
+    "name": "snake_hypnotize",
+    "family": "snake",
+    "tags": { "pattern": "hypnotize" },
+    "pattern": { "type": "sine", "duration_ms": 16000, "sp": 35, "dp": 50, "rng": 50, "cycles": 5 }
   }
 ]
